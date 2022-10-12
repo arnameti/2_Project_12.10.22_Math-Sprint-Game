@@ -1,84 +1,84 @@
-'use strict';
-const playerContainer = document.querySelector('.player-container');
-const playerIcons = document.querySelectorAll('.player-icon');
-const computerIcons = document.querySelectorAll('.computer-icon');
-const playerChoice = document.querySelector('.player-choice');
-const computerChoice = document.querySelector('.computer-choice');
-const playerScoreEl = document.querySelector('.player-score');
-const computerScoreEl = document.querySelector('.computer-score');
-const resultContainerEL = document.querySelector('.result-container');
-const resetBtn = document.querySelector('.reset-btn');
+// Pages
+const gamePage = document.getElementById('game-page');
+const scorePage = document.getElementById('score-page');
+const splashPage = document.getElementById('splash-page');
+const countdownPage = document.getElementById('countdown-page');
+// Splash Page
+const startForm = document.getElementById('start-form');
+const radioContainers = document.querySelectorAll('.radio-container');
+const radioInputs = document.querySelectorAll('input');
+const bestScores = document.querySelectorAll('.best-score-value');
+// Countdown Page
+const countdown = document.querySelector('.countdown');
+// Game Page
+const itemContainer = document.querySelector('.item-container');
+// Score Page
+const finalTimeEl = document.querySelector('.final-time');
+const baseTimeEl = document.querySelector('.base-time');
+const penaltyTimeEl = document.querySelector('.penalty-time');
+const playAgainBtn = document.querySelector('.play-again');
 
-const choices = {
-  rock: {name: 'Rock', defeats: ['scissors', 'lizard']},
-  paper: {name: 'Paper', defeats: ['rock', 'spock']},
-  scissors: {name: 'Scissors', defeats: ['paper', 'lizard']},
-  lizard: {name: 'Lizard', defeats: ['paper', 'spock']},
-  spock: {name: 'Spock', defeats: ['scissors', 'rock']},
-};
+// Equations
 
-let playerScore = 0;
-let computerScore = 0;
+let equationsArray = [];
 
-const getRandomInt = function (min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
+// Game Page
+let firstNumber = 0;
+let secondNumber = 0;
+let equationObject = {};
+const wrongFormat = [];
 
-const checkResult = function (playerSelection, computerSelection) {
-  playerSelection = playerSelection.toLowerCase();
-  computerSelection = computerSelection.toLowerCase();
+// Time
 
-  const choicePlayer = choices[playerSelection];
-  const choiceComputer = choices[computerSelection];
+// Scroll
 
-  if (choicePlayer.defeats.find(el => el === computerSelection)) {
-    playerScore++;
-    playerScoreEl.textContent = `${playerScore}`;
-    resultContainerEL.textContent = 'You Won!';
-  }
+// Create Correct/Incorrect Random Equations
+function createEquations() {
+  // Randomly choose how many correct equations there should be
+  // const correctEquations = 
+  // Set amount of wrong equations
+  // const wrongEquations = 
+  // Loop through, multiply random numbers up to 9, push to array
+  // for (let i = 0; i < correctEquations; i++) {
+  //   firstNumber = 
+  //   secondNumber = 
+  //   const equationValue = firstNumber * secondNumber;
+  //   const equation = `${firstNumber} x ${secondNumber} = ${equationValue}`;
+  //   equationObject = { value: equation, evaluated: 'true' };
+  //   equationsArray.push(equationObject);
+  // }
+  // Loop through, mess with the equation results, push to array
+  // for (let i = 0; i < wrongEquations; i++) {
+  //   firstNumber = 
+  //   secondNumber = 
+  //   const equationValue = firstNumber * secondNumber;
+  //   wrongFormat[0] = `${firstNumber} x ${secondNumber + 1} = ${equationValue}`;
+  //   wrongFormat[1] = `${firstNumber} x ${secondNumber} = ${equationValue - 1}`;
+  //   wrongFormat[2] = `${firstNumber + 1} x ${secondNumber} = ${equationValue}`;
+  //   const formatChoice = 
+  //   const equation = wrongFormat[formatChoice];
+  //   equationObject = { value: equation, evaluated: 'false' };
+  //   equationsArray.push(equationObject);
+  // }
+}
 
-  if (playerSelection === computerSelection) {
-    resultContainerEL.textContent = 'It\'s a tie!';
-  }
+// Dynamically adding correct/incorrect equations
+// function populateGamePage() {
+//   // Reset DOM, Set Blank Space Above
+//   itemContainer.textContent = '';
+//   // Spacer
+//   const topSpacer = document.createElement('div');
+//   topSpacer.classList.add('height-240');
+//   // Selected Item
+//   const selectedItem = document.createElement('div');
+//   selectedItem.classList.add('selected-item');
+//   // Append
+//   itemContainer.append(topSpacer, selectedItem);
 
-  if (choiceComputer.defeats.find(el => el === playerSelection)) {
-    computerScore++;
-    computerScoreEl.textContent = `${computerScore}`;
-    resultContainerEL.textContent = 'You Lost!';
-  }
-};
+//   // Create Equations, Build Elements in DOM
 
-playerContainer.addEventListener('click', function (e) {
-  // player selection
-  const clickedSelection = e.target.closest('.player-icon');
-
-  if (!clickedSelection) return;
-
-  // setting color and name for player selection
-  playerIcons.forEach((icon) => icon.classList.remove('color-black'));
-  clickedSelection.classList.add('color-black');
-  playerChoice.textContent = ` --- ${clickedSelection.dataset.choice}`;
-
-  // computer selection
-  const randomInt = getRandomInt(0, 4);
-  const computerSelection = computerIcons[randomInt];
-
-  // setting color and name for computer selection
-  computerIcons.forEach((icon) => icon.classList.remove('color-black'));
-  computerSelection.classList.add('color-black');
-  computerChoice.textContent = ` --- ${computerSelection.dataset.choice}`;
-
-  checkResult(clickedSelection.dataset.choice, computerSelection.dataset.choice);
-});
-
-resetBtn.addEventListener('click', function () {
-  playerScore = 0;
-  computerScore = 0;
-  playerChoice.textContent = '';
-  computerChoice.textContent = '';
-  playerIcons.forEach((icon) => icon.classList.remove('color-black'));
-  computerIcons.forEach((icon) => icon.classList.remove('color-black'));
-  playerScoreEl.textContent = `${playerScore}`;
-  computerScoreEl.textContent = `${computerScore}`;
-  resultContainerEL.textContent = 'Let\'s Play!';
-});
+//   // Set Blank Space Below
+//   const bottomSpacer = document.createElement('div');
+//   bottomSpacer.classList.add('height-500');
+//   itemContainer.appendChild(bottomSpacer);
+// }
